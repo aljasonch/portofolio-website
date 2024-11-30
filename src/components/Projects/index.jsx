@@ -18,9 +18,9 @@ const Projects = () => {
               className="w-full aspect-video object-cover"
             />
             <div className="px-6 py-4">
-              <p className="text-gray-300 text-sm">Click here to visit</p>
+              <p className="text-gray-300 poppins-regular text-sm">Click here to visit</p>
               <div className="flex justify-between">
-                <h3 className="text-xl font-bold text-white mb-2">
+                <h3 className="text-xl poppins-bold text-white mb-2">
                   MENTORING UMN 2024
                 </h3>
                 <div className="text-slate-500 text-2xl">→</div>
@@ -34,9 +34,9 @@ const Projects = () => {
               className="w-full aspect-video object-cover"
             />
             <div className="px-6 py-4">
-              <p className="text-gray-300 text-sm">Click here to visit</p>
+              <p className="text-gray-300 poppins-regular text-sm">Click here to visit</p>
               <div className="flex justify-between">
-                <h3 className="text-xl font-bold text-white mb-2">
+                <h3 className="text-xl poppins-bold text-white mb-2">
                   Minko | Furniture Store
                 </h3>
                 <div className="text-slate-500 text-2xl">→</div>
@@ -50,9 +50,9 @@ const Projects = () => {
               className="w-full aspect-video object-cover"
             />
             <div className="px-6 py-4">
-              <p className="text-gray-300 text-sm">Click here to visit</p>
+              <p className="text-gray-300 poppins-regular text-sm">Click here to visit</p>
               <div className="flex justify-between">
-                <h3 className="text-xl font-bold text-white mb-2">
+                <h3 className="text-xl poppins-bold text-white mb-2">
                   Orion AI
                 </h3>
                 <div className="text-slate-500 text-2xl">→</div>
