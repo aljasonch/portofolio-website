@@ -23,7 +23,12 @@ const About = () => {
             Get In Touch
           </button>
           <button className="bg-transparent border border-blue-500 hover:bg-blue-600 text-blue-500 hover:text-white font-bold py-3 px-6 rounded-full">
-            Download CV
+            <a
+              href="/CV_Alfonsus Jason Christian.pdf"
+              download="CV_Alfonsus Jason Christian.pdf"
+            >
+              Download CV
+            </a>
           </button>
         </div>
         <div className="w-[350px] h-[350px] relative overflow-hidden rounded-full">
