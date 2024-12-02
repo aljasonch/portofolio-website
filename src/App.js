@@ -17,7 +17,7 @@ function App() {
   return (
     <div className="min-h-screen">
       <Navbar scrollToSection={scrollToSection} />
-      <About />
+      <About scrollToSection={scrollToSection} />
       <Experience />
       <Projects />
       <Contact />

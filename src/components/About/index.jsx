@@ -1,7 +1,10 @@
 import React from "react";
 import Profile from "../../assets/aljasonch.jpeg";
 
-const About = () => {
+const About = ({scrollToSection}) => {
+  const handleNavItemClick = (section) => {
+    scrollToSection(section);
+  };
   return (
     <section id="about" className="py-20 bg-neutral-950">
       <div className="container mx-auto px-6 max-w-6xl">
@@ -18,7 +21,7 @@ const About = () => {
               new tools and frameworks.
             </p>
             <div className="flex flex-col sm:flex-row">
-              <button className="bg-blue-500 hover:bg-transparent hover:border-blue-500 hover:border text-white hover:text-blue-500 font-bold py-3 px-6 lg:mr-6 rounded-full mb-4 sm:mb-0 sm:mr-6">
+              <button onClick={() => handleNavItemClick('contact')} className="bg-blue-500 hover:bg-transparent hover:border-blue-500 hover:border text-white hover:text-blue-500 font-bold py-3 px-6 lg:mr-6 rounded-full mb-4 sm:mb-0 sm:mr-6">
                 Get In Touch
               </button>
               <button className="bg-transparent border border-blue-500 hover:bg-blue-600 text-blue-500 hover:text-white font-bold py-3 px-6 rounded-full">
