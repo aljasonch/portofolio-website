@@ -52,7 +52,7 @@ const Projects = () => {
             </a>
           </div>
           <div className="bg-neutral-800 rounded-lg hover:scale-105 transition-transform duration-300 ease-in-out">
-            <a href="http://orionai-beta.vercel.app/" target="_blank">
+            <a href="http://kailux.vercel.app/" target="_blank">
               <img
                 src={Orion}
                 alt="HTML Project"
@@ -64,7 +64,7 @@ const Projects = () => {
                 </p>
                 <div className="flex justify-between">
                   <h3 className="text-xl poppins-bold text-white mb-2">
-                    Orion AI
+                    Kailux
                   </h3>
                   <div className="text-slate-500 text-2xl">→</div>
                 </div>
