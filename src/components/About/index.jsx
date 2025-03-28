@@ -1,5 +1,5 @@
 import React from "react";
-import Profile from "../../assets/aljasonch.jpeg";
+import Profile from "../../assets/aljasonch.png";
 
 const About = ({scrollToSection}) => {
   const handleNavItemClick = (section) => {
