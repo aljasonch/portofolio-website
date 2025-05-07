@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion'; // Added AnimatePresence for exit animations
+import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useNavigate } from 'react-router-dom';
 
-const Navbar = ({ scrollToSection }) => {
+const Navbar = () => { // scrollToSection prop removed
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleNavItemClick = (section) => {
-    scrollToSection(section);
+  const handleNavItemClick = (path) => {
+    navigate(path);
     setIsOpen(false); // Close menu on item click
   };
 
@@ -54,10 +56,11 @@ const Navbar = ({ scrollToSection }) => {
   };
   
   const navItems = [
-    { label: 'About', section: 'about' },
-    { label: 'Projects', section: 'projects' },
-    { label: 'Experience', section: 'experience' },
-    { label: 'Contact', section: 'contact' },
+    { label: 'About', path: '/about' },
+    { label: 'Experience', path: '/experience' },
+    { label: 'Projects', path: '/projects' },
+    { label: 'News', path: '/news' }, // Added News link
+    { label: 'Contact', path: '/contact' },
   ];
 
   return (
@@ -69,28 +72,27 @@ const Navbar = ({ scrollToSection }) => {
     >
       <div className="container mx-auto px-6 py-6">
         <div className="flex items-center justify-between lg:justify-evenly gap-12">
-          <motion.div
-            onClick={() => handleNavItemClick('about')} // Assuming 'about' is the default target for logo click
-            className="text-2xl font-bold text-white poppins-extrabold cursor-pointer"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            aljasonch
-          </motion.div>
+          <Link to="/" className="text-2xl font-bold text-white poppins-extrabold cursor-pointer">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              aljasonch
+            </motion.div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex space-x-12">
             {navItems.map((item) => (
-              <motion.div
-                key={item.section}
-                onClick={() => handleNavItemClick(item.section)}
-                className="text-white poppins-regular cursor-pointer"
-                variants={desktopNavItemVariants}
-                whileHover="hover"
-                whileTap="tap"
-              >
-                {item.label}
-              </motion.div>
+              <Link key={item.path} to={item.path} className="text-white poppins-regular cursor-pointer">
+                <motion.div
+                  variants={desktopNavItemVariants}
+                  whileHover="hover"
+                  whileTap="tap"
+                >
+                  {item.label}
+                </motion.div>
+              </Link>
             ))}
           </nav>
 
@@ -162,16 +164,15 @@ const Navbar = ({ scrollToSection }) => {
 
               <nav className="flex flex-col items-start space-y-4">
                 {navItems.map((item) => (
-                  <motion.div
-                    key={item.section}
-                    onClick={() => handleNavItemClick(item.section)}
-                    className="text-primary hover:text-accent poppins-medium text-lg cursor-pointer py-2 w-full"
-                    variants={mobileNavListItemVariants}
-                    whileHover={{ x: 5, color: '#F97316' }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {item.label}
-                  </motion.div>
+                  <Link key={item.path} to={item.path} className="text-primary hover:text-accent poppins-medium text-lg cursor-pointer py-2 w-full" onClick={() => setIsOpen(false)}>
+                    <motion.div
+                      variants={mobileNavListItemVariants}
+                      whileHover={{ x: 5, color: '#F97316' }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {item.label}
+                    </motion.div>
+                  </Link>
                 ))}
               </nav>
             </motion.div>

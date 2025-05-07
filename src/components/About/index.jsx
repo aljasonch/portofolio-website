@@ -2,12 +2,10 @@ import React, { useRef } from "react"; // Added useRef
 import { motion, useScroll, useTransform } from "framer-motion"; // Added useScroll, useTransform
 import { TypeAnimation } from "react-type-animation";
 import Profile from "../../assets/aljasonch.png";
+import { useNavigate } from 'react-router-dom';
 
 const About = ({ scrollToSection }) => {
-  const handleNavItemClick = (section) => {
-    scrollToSection(section);
-  };
-
+  const navigate = useNavigate();
   const sectionRef = useRef(null); // Ref for the section
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -80,7 +78,7 @@ const About = ({ scrollToSection }) => {
             </motion.p>
             <motion.div className="flex flex-col sm:flex-row" variants={itemVariants}>
               <motion.button
-                onClick={() => handleNavItemClick('contact')}
+                onClick={() => navigate('/contact')}
                 className="bg-primary hover:bg-secondary text-white font-bold py-3 px-6 lg:mr-6 rounded-full mb-4 sm:mb-0 sm:mr-6 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
