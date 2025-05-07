@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion'; // Added AnimatePresence for exit animations
 
 const Navbar = ({ scrollToSection }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,24 +10,96 @@ const Navbar = ({ scrollToSection }) => {
 
   const handleNavItemClick = (section) => {
     scrollToSection(section);
-    setIsOpen(false);
+    setIsOpen(false); // Close menu on item click
   };
 
+  // Variants for desktop navigation items
+  const desktopNavItemVariants = {
+    hover: {
+      scale: 1.1,
+      color: '#F97316', // Accent color
+      transition: { duration: 0.2 },
+    },
+    tap: {
+      scale: 0.95,
+    },
+  };
+
+  // Variants for the mobile menu container (sliding panel)
+  const mobileMenuPanelVariants = {
+    open: {
+      x: 0,
+      opacity: 1,
+      transition: { type: 'spring', stiffness: 300, damping: 35, delayChildren: 0.2, staggerChildren: 0.07 },
+    },
+    closed: {
+      x: '100%', // Slide out to the right
+      opacity: 0.8,
+      transition: { type: 'spring', stiffness: 300, damping: 35, staggerChildren: 0.05, staggerDirection: -1 },
+    },
+  };
+
+  // Variants for individual mobile navigation items
+  const mobileNavListItemVariants = {
+    open: {
+      y: 0,
+      opacity: 1,
+      transition: { y: { stiffness: 1000, velocity: -100 } },
+    },
+    closed: {
+      y: 50,
+      opacity: 0,
+      transition: { y: { stiffness: 1000 } },
+    },
+  };
+  
+  const navItems = [
+    { label: 'About', section: 'about' },
+    { label: 'Projects', section: 'projects' },
+    { label: 'Experience', section: 'experience' },
+    { label: 'Contact', section: 'contact' },
+  ];
+
   return (
-    <header className="bg-neutral-900 shadow sticky top-0 z-50">
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
+      className="bg-gradient-to-r from-primary to-secondary shadow sticky top-0 z-50"
+    >
       <div className="container mx-auto px-6 py-6">
         <div className="flex items-center justify-between lg:justify-evenly gap-12">
-          <div
-            onClick={() => handleNavItemClick('about')}
+          <motion.div
+            onClick={() => handleNavItemClick('about')} // Assuming 'about' is the default target for logo click
             className="text-2xl font-bold text-white poppins-extrabold cursor-pointer"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             aljasonch
-          </div>
-          {/* Tombol Hamburger */}
+          </motion.div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex space-x-12">
+            {navItems.map((item) => (
+              <motion.div
+                key={item.section}
+                onClick={() => handleNavItemClick(item.section)}
+                className="text-white poppins-regular cursor-pointer"
+                variants={desktopNavItemVariants}
+                whileHover="hover"
+                whileTap="tap"
+              >
+                {item.label}
+              </motion.div>
+            ))}
+          </nav>
+
+          {/* Hamburger Icon (Mobile) */}
           <div className="lg:hidden">
             <button
               onClick={toggleNavbar}
               className="text-white focus:outline-none"
+              aria-label="Open menu"
             >
               <svg
                 className="h-6 w-6"
@@ -37,82 +110,75 @@ const Navbar = ({ scrollToSection }) => {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path d={isOpen ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+                {/* Animated hamburger/close icon path */}
+                <motion.path
+                  animate={isOpen ? { d: "M6 18L18 6M6 6l12 12" } : { d: "M4 6h16M4 12h16M4 18h16" }}
+                  transition={{ duration: 0.3 }}
+                />
               </svg>
             </button>
           </div>
-          {/* Navigasi Desktop */}
-          <nav className="hidden lg:flex space-x-12">
-            <div
-              onClick={() => handleNavItemClick('about')}
-              className="text-white poppins-regular hover:text-gray-600 cursor-pointer"
-            >
-              About
-            </div>
-            <div
-              onClick={() => handleNavItemClick('projects')}
-              className="text-white poppins-regular hover:text-gray-600 cursor-pointer"
-            >
-              Projects
-            </div>
-            <div
-              onClick={() => handleNavItemClick('experience')}
-              className="text-white poppins-regular hover:text-gray-600 cursor-pointer"
-            >
-              Experience
-            </div>
-            <div
-              onClick={() => handleNavItemClick('contact')}
-              className="text-white poppins-regular hover:text-gray-600 cursor-pointer"
-            >
-              Contact
-            </div>
-          </nav>
         </div>
       </div>
-      {/* Side Panel Mobile/Tablet */}
-      {isOpen && (
-        <div className="lg:hidden fixed inset-0 z-40">
-          <div
-            className="fixed inset-0 flex items-center justify-center transition-opacity duration-300 ease-in-out"
-            style={{ backgroundColor: isOpen ? 'rgba(0, 0, 0, 0.7)' : 'transparent' }}
-            onClick={toggleNavbar}
+
+      {/* Mobile Menu Side Panel */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            className="lg:hidden fixed inset-0 z-40" // Full screen container for overlay + panel
+            initial="closed"
+            animate="open"
+            exit="closed"
           >
-            <div
-              className=" shadow-lg rounded-lg p-6 w-11/12 max-w-md"
-              onClick={(e) => e.stopPropagation()}
+            {/* Overlay */}
+            <motion.div
+              className="absolute inset-0 bg-black"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              onClick={toggleNavbar} // Close menu by clicking overlay
+            />
+
+            {/* Menu Panel Content */}
+            <motion.div
+              className="fixed top-0 right-0 h-full w-3/4 max-w-xs bg-neutralBg shadow-xl p-6 z-50 flex flex-col"
+              variants={mobileMenuPanelVariants}
+              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside menu
             >
-              <div className="flex flex-col items-center space-y-6">
-                <div
-                  onClick={() => handleNavItemClick('about')}
-                  className="text-white poppins-regular hover:text-gray-600 cursor-pointer w-full py-2 text-center"
+              <div className="flex justify-end mb-6">
+                <motion.button
+                  onClick={toggleNavbar}
+                  className="text-neutralText hover:text-accent p-1"
+                  whileHover={{ scale: 1.2, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                  aria-label="Close menu"
                 >
-                  About
-                </div>
-                <div
-                  onClick={() => handleNavItemClick('projects')}
-                  className="text-white poppins-regular hover:text-gray-600 cursor-pointer w-full py-2 text-center"
-                >
-                  Projects
-                </div>
-                <div
-                  onClick={() => handleNavItemClick('experience')}
-                  className="text-white poppins-regular hover:text-gray-600 cursor-pointer w-full py-2 text-center"
-                >
-                  Experience
-                </div>
-                <div
-                  onClick={() => handleNavItemClick('contact')}
-                  className="text-white poppins-regular hover:text-gray-600 cursor-pointer w-full py-2 text-center"
-                >
-                  Contact
-                </div>
+                  <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </motion.button>
               </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </header>
+
+              <nav className="flex flex-col items-start space-y-4">
+                {navItems.map((item) => (
+                  <motion.div
+                    key={item.section}
+                    onClick={() => handleNavItemClick(item.section)}
+                    className="text-primary hover:text-accent poppins-medium text-lg cursor-pointer py-2 w-full"
+                    variants={mobileNavListItemVariants}
+                    whileHover={{ x: 5, color: '#F97316' }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {item.label}
+                  </motion.div>
+                ))}
+              </nav>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.header>
   );
 };
 

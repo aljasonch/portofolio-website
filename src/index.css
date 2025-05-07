@@ -1,10 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-:root {
-    --tw-bg-opacity: 1;
-    background-color: rgb(10 10 10 / var(--tw-bg-opacity, 1))
+
+body {
+  @apply bg-neutralBg text-neutralText;
+  font-family: "Poppins", sans-serif; /* Assuming Poppins is the desired default font */
 }
+
+/* Removing the :root background color as it's now handled by Tailwind utility on body */
 
 .poppins-thin {
   font-family: "Poppins", sans-serif;
