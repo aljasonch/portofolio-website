@@ -1,25 +1,17 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-const Navbar = () => { // scrollToSection prop removed
+const Navbar = () => { 
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
 
   const toggleNavbar = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleNavItemClick = (path) => {
-    navigate(path);
-    setIsOpen(false); // Close menu on item click
-  };
-
-  // Variants for desktop navigation items
   const desktopNavItemVariants = {
     hover: {
-      scale: 1.1,
-      color: '#F97316', // Accent color
+      scale: 1.05,
       transition: { duration: 0.2 },
     },
     tap: {
@@ -27,7 +19,6 @@ const Navbar = () => { // scrollToSection prop removed
     },
   };
 
-  // Variants for the mobile menu container (sliding panel)
   const mobileMenuPanelVariants = {
     open: {
       x: 0,
@@ -35,13 +26,12 @@ const Navbar = () => { // scrollToSection prop removed
       transition: { type: 'spring', stiffness: 300, damping: 35, delayChildren: 0.2, staggerChildren: 0.07 },
     },
     closed: {
-      x: '100%', // Slide out to the right
+      x: '100%',
       opacity: 0.8,
       transition: { type: 'spring', stiffness: 300, damping: 35, staggerChildren: 0.05, staggerDirection: -1 },
     },
   };
 
-  // Variants for individual mobile navigation items
   const mobileNavListItemVariants = {
     open: {
       y: 0,
@@ -59,48 +49,46 @@ const Navbar = () => { // scrollToSection prop removed
     { label: 'About', path: '/about' },
     { label: 'Experience', path: '/experience' },
     { label: 'Projects', path: '/projects' },
-    { label: 'News', path: '/news' }, // Added News link
+    { label: 'News', path: '/news' }, 
     { label: 'Contact', path: '/contact' },
   ];
 
-  return (
-    <motion.header
+  return (    
+  <motion.header
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="bg-gradient-to-r from-primary to-secondary shadow sticky top-0 z-50"
+      className="nav-modern fixed top-0 w-full z-50 bg-white/80 backdrop-blur-sm transition-all duration-300"
     >
-      <div className="container mx-auto px-6 py-6">
+      <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between lg:justify-evenly gap-12">
-          <Link to="/" className="text-2xl font-bold text-white poppins-extrabold cursor-pointer">
+          <Link to="/" className="cursor-pointer">
             <motion.div
+              className="text-2xl font-bold gradient-text-modern poppins-extrabold"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
               aljasonch
             </motion.div>
           </Link>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden lg:flex space-x-12">
+          <nav className="hidden lg:flex space-x-8">
             {navItems.map((item) => (
-              <Link key={item.path} to={item.path} className="text-white poppins-regular cursor-pointer">
+              <Link key={item.path} to={item.path} className="cursor-pointer group">
                 <motion.div
+                  className="relative text-dark-700 hover:text-primary-600 font-semibold transition-all duration-300 py-2 px-4 rounded-lg"
                   variants={desktopNavItemVariants}
                   whileHover="hover"
                   whileTap="tap"
                 >
                   {item.label}
+                  <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 group-hover:w-full group-hover:left-0 transition-all duration-300 rounded-full"></div>
                 </motion.div>
               </Link>
             ))}
-          </nav>
-
-          {/* Hamburger Icon (Mobile) */}
-          <div className="lg:hidden">
+          </nav>          <div className="lg:hidden">
             <button
               onClick={toggleNavbar}
-              className="text-white focus:outline-none"
+              className="text-dark-700 hover:text-primary-600 focus:outline-none transition-colors duration-300 p-2 rounded-lg bg-white/80 backdrop-blur-sm border border-white/30 shadow-sm"
               aria-label="Open menu"
             >
               <svg
@@ -112,7 +100,6 @@ const Navbar = () => { // scrollToSection prop removed
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                {/* Animated hamburger/close icon path */}
                 <motion.path
                   animate={isOpen ? { d: "M6 18L18 6M6 6l12 12" } : { d: "M4 6h16M4 12h16M4 18h16" }}
                   transition={{ duration: 0.3 }}
@@ -122,36 +109,32 @@ const Navbar = () => { // scrollToSection prop removed
           </div>
         </div>
       </div>
-
-      {/* Mobile Menu Side Panel */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="lg:hidden fixed inset-0 z-40" // Full screen container for overlay + panel
+            className="lg:hidden fixed inset-0"
             initial="closed"
             animate="open"
             exit="closed"
           >
-            {/* Overlay */}
             <motion.div
-              className="absolute inset-0 bg-black"
+              className="absolute inset-0 bg-black/50"
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
-              onClick={toggleNavbar} // Close menu by clicking overlay
+              onClick={toggleNavbar} 
             />
 
-            {/* Menu Panel Content */}
             <motion.div
-              className="fixed top-0 right-0 h-full w-3/4 max-w-xs bg-neutralBg shadow-xl p-6 z-50 flex flex-col"
+              className="fixed top-0 right-0 h-full w-3/4 max-w-xs glass-card shadow-large p-6 z-60 flex flex-col"
               variants={mobileMenuPanelVariants}
-              onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside menu
+              onClick={(e) => e.stopPropagation()} 
             >
               <div className="flex justify-end mb-6">
                 <motion.button
                   onClick={toggleNavbar}
-                  className="text-neutralText hover:text-accent p-1"
+                  className="text-neutral-700 hover:text-accent-500 p-2 rounded-full hover:bg-white/50 transition-all duration-300"
                   whileHover={{ scale: 1.2, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   aria-label="Close menu"
@@ -164,10 +147,15 @@ const Navbar = () => { // scrollToSection prop removed
 
               <nav className="flex flex-col items-start space-y-4">
                 {navItems.map((item) => (
-                  <Link key={item.path} to={item.path} className="text-primary hover:text-accent poppins-medium text-lg cursor-pointer py-2 w-full" onClick={() => setIsOpen(false)}>
+                  <Link 
+                    key={item.path} 
+                    to={item.path} 
+                    className="text-neutral-700 hover:text-primary-600 poppins-medium text-lg cursor-pointer py-3 px-4 w-full rounded-lg hover:bg-white/50 transition-all duration-300" 
+                    onClick={() => setIsOpen(false)}
+                  >
                     <motion.div
                       variants={mobileNavListItemVariants}
-                      whileHover={{ x: 5, color: '#F97316' }}
+                      whileHover={{ x: 5 }}
                       whileTap={{ scale: 0.95 }}
                     >
                       {item.label}

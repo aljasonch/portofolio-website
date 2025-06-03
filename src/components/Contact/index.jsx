@@ -15,9 +15,13 @@ const Contact = () => {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
-
   const iconVariants = {
-    hover: { scale: 1.2, color: "#F97316" }, // Accent color on hover
+    hover: { 
+      scale: 1.2, 
+      rotate: 5,
+      filter: "drop-shadow(0px 5px 15px rgba(16, 185, 129, 0.4))",
+      transition: { type: "spring", stiffness: 300 }
+    },
     tap: { scale: 0.9 },
   };
 
@@ -25,49 +29,59 @@ const Contact = () => {
     { href: "https://www.instagram.com/jasonchrist_5/", icon: FaInstagram, label: "Instagram" },
     { href: "https://twitter.com/alfonsus_jason", icon: FaTwitter, label: "Twitter" },
     { href: "https://www.youtube.com/@alfonsusjason9308", icon: FaYoutube, label: "YouTube" },
-  ];
-
-  return (
+  ];  return (
     <motion.section
       id="contact"
-      className="py-20 bg-neutralBg text-neutralText" // Updated background and text
+      className="relative pt-32 pb-20 bg-gradient-to-br from-neutral-50 via-secondary-50/30 to-accent-50/40 text-dark-800 overflow-hidden"
       variants={sectionVariants}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
-      <div className="container mx-auto px-6 max-w-4xl text-center md:text-start"> {/* Centered on small screens */}
+      {/* Decorative background elements */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-16 right-20 w-40 h-40 bg-gradient-to-br from-accent-300 to-secondary-300 rounded-full blur-3xl animate-float"></div>
+        <div className="absolute bottom-20 left-16 w-56 h-56 bg-gradient-to-br from-primary-300 to-accent-300 rounded-full blur-3xl animate-float" style={{animationDelay: '3s'}}></div>
+        <div className="absolute top-1/3 left-1/3 w-32 h-32 bg-gradient-to-br from-secondary-300 to-primary-300 rounded-full blur-2xl animate-float" style={{animationDelay: '1s'}}></div>
+      </div>
+
+      <div className="container mx-auto px-6 max-w-4xl text-center md:text-start relative z-10">
         <motion.h2
-          className="text-3xl md:text-4xl poppins-bold text-primary mb-8" // Increased margin bottom
+          className="text-4xl md:text-5xl font-bold gradient-text-modern mb-12"
           variants={itemVariants}
         >
-          CONTACT
+          LET'S CONNECT
         </motion.h2>
-        <motion.p className="text-gray-700 poppins-regular mb-6 leading-relaxed" variants={itemVariants}>
-          I am an IT student currently pursuing my degree at Multimedia Nusantara
-          University and am open for internship opportunities. I have extensive
-          experience and have completed various projects related to my coursework,
-          including developing organizational websites, Android applications, and
-          much more.
-        </motion.p>
-        <motion.p className="text-gray-700 poppins-regular mb-8 leading-relaxed" variants={itemVariants}> {/* Increased margin bottom */}
-          Feel free to reach out if you'd like me to contribute to your projects
-          or company! You can contact me through the social media links below or
-          email me directly.
-        </motion.p>
+        
+        <motion.div className="glass-card p-8 rounded-3xl mb-8 border border-white/30" variants={itemVariants}>
+          <p className="text-dark-600 text-lg mb-6 leading-relaxed">
+            I am an IT student currently pursuing my degree at Multimedia Nusantara
+            University and am open for internship opportunities. I have extensive
+            experience and have completed various projects related to my coursework,
+            including developing organizational websites, Android applications, and
+            much more.
+          </p>
+          <p className="text-dark-600 text-lg mb-8 leading-relaxed">
+            Feel free to reach out if you'd like me to contribute to your projects
+            or company! You can contact me through the social media links below or
+            email me directly.
+          </p>
+        </motion.div>
+
         <motion.a
           href="mailto:alfonsusjason01@gmail.com"
-          className="text-secondary hover:text-accent poppins-semibold text-lg flex items-center justify-center md:justify-start mb-10 transition-colors duration-300" // Centered on small, increased margin bottom
+          className="btn-modern bg-gradient-to-r p-2 rounded-xl from-accent-500 to-secondary-500 hover:from-accent-400 hover:to-secondary-400 text-white font-semibold text-lg flex items-center justify-center md:justify-start mb-12 transition-all duration-300 group w-fit mx-auto md:mx-0"
           variants={itemVariants}
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.97 }}
+          whileHover={{ scale: 1.05, y: -2 }}
+          whileTap={{ scale: 0.95 }}
         >
-          <FaEnvelope className="mr-3 text-2xl" /> {/* Increased icon size and margin */}
+          <FaEnvelope className="mr-3 text-xl group-hover:rotate-12 transition-transform duration-300" />
           alfonsusjason01@gmail.com
         </motion.a>
+
         <motion.div
-          className="flex justify-center md:justify-start space-x-8" // Increased space-x
-          variants={sectionVariants} // Stagger children
+          className="flex justify-center md:justify-start space-x-8"
+          variants={sectionVariants}
         >
           {socialLinks.map((link, index) => (
             <motion.a
@@ -76,12 +90,12 @@ const Contact = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.label}
-              className="text-primary hover:text-accent transition-colors duration-300"
+              className="glass-card p-4 rounded-2xl text-accent-600 hover:text-accent-500 transition-all duration-300 group hover:shadow-xl border border-white/30"
               variants={iconVariants}
               whileHover="hover"
               whileTap="tap"
             >
-              <link.icon size={28} /> {/* Increased icon size */}
+              <link.icon size={32} className="group-hover:scale-110 transition-transform duration-300" />
             </motion.a>
           ))}
         </motion.div>
