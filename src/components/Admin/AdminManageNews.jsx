@@ -174,48 +174,45 @@ const AdminManageNews = () => {
 
   return (
     <motion.div
-      className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-neutralText p-4 md:p-8"
+      className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 text-neutralText p-4 md:p-8"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
       <div className="container mx-auto max-w-7xl">
         <motion.div
-          className="bg-white dark:bg-neutral-800 rounded-3xl shadow-xl border border-gray-100 dark:border-neutral-700 p-8 mb-8"
+          className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8 mb-8"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
         >
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-primary dark:text-primary-dark poppins-bold mb-2">
+              <h1 className="text-3xl md:text-4xl font-bold text-primary poppins-bold mb-2">
                 News Management
               </h1>
-              <p className="text-lg text-gray-600 dark:text-gray-300 poppins-regular mb-4">
+              <p className="text-lg text-gray-600 poppins-regular mb-4">
                 Create, edit, and manage your news articles
               </p>
-              <div className="flex items-center gap-4 flex-wrap">
-                <div className="flex items-center gap-2">
+              <div className="flex items-center gap-4 flex-wrap">                <div className="flex items-center gap-2">
                   <UserIcon className="h-4 w-4 text-gray-500" />
-                  <span className="text-sm text-gray-600 dark:text-gray-400 poppins-medium">
+                  <span className="text-sm text-gray-600 poppins-medium">
                     Admin Panel
                   </span>
                 </div>
                 {sessionTimeLeft > 0 && (
                   <>
-                    <span className="text-gray-400">•</span>
-                    <div className="flex items-center gap-2">
+                    <span className="text-gray-400">•</span>                    <div className="flex items-center gap-2">
                       <ClockIcon className="h-4 w-4 text-gray-500" />
-                      <span className="text-sm text-gray-600 dark:text-gray-400 poppins-regular">
+                      <span className="text-sm text-gray-600 poppins-regular">
                         Session expires in {formatTimeRemaining(sessionTimeLeft)}
                       </span>
                     </div>
                   </>
                 )}
-                <span className="text-gray-400">•</span>
-                <div className="flex items-center gap-2">
+                <span className="text-gray-400">•</span>                <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm text-gray-600 dark:text-gray-400 poppins-medium">
+                  <span className="text-sm text-gray-600 poppins-medium">
                     {newsList.length} Articles
                   </span>
                 </div>
@@ -234,10 +231,9 @@ const AdminManageNews = () => {
                 </svg>
                 Add New Article
               </motion.button>
-              
-              <motion.button
+                <motion.button
                 onClick={handleLogout}
-                className="group bg-white dark:bg-neutral-700 hover:bg-red-50 dark:hover:bg-red-900/20 text-red-600 dark:text-red-400 border-2 border-red-200 dark:border-red-800 hover:border-red-300 dark:hover:border-red-700 font-bold py-3 px-6 rounded-2xl poppins-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
+                className="group bg-white hover:bg-red-50 text-red-600 border-2 border-red-200 hover:border-red-300 font-bold py-3 px-6 rounded-2xl poppins-medium shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -259,7 +255,7 @@ const AdminManageNews = () => {
               transition={{ duration: 0.4, ease: "easeInOut" }}
               className="mb-8 overflow-hidden"
             >
-              <div className="bg-white dark:bg-neutral-800 rounded-3xl shadow-xl border border-gray-100 dark:border-neutral-700 overflow-hidden">
+              <div className="bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden">
                 <div className="bg-gradient-to-r from-primary to-accent p-6 text-white">
                   <h2 className="text-2xl font-bold poppins-bold flex items-center gap-3">
                     {editingNews ? (
@@ -295,7 +291,7 @@ const AdminManageNews = () => {
                   <div className="flex justify-end mt-6">
                     <motion.button 
                       onClick={() => { setShowForm(false); setEditingNews(null); setFormError(''); setFormSuccess(''); }} 
-                      className="flex items-center gap-2 px-6 py-3 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 hover:bg-gray-100 dark:hover:bg-neutral-700 rounded-xl transition-all duration-300 poppins-medium"
+                      className="flex items-center gap-2 px-6 py-3 text-gray-600 hover:text-gray-800  rounded-xl transition-all duration-300 poppins-medium"
                       whileHover={{ x: -5 }}
                     >
                       <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -312,31 +308,31 @@ const AdminManageNews = () => {
 
         {listLoading ? (
           <motion.div 
-            className="bg-white dark:bg-neutral-800 rounded-3xl shadow-xl border border-gray-100 dark:border-neutral-700 p-8"
+            className="bg-white rounded-3xl shadow-xl border border-gray-100 p-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           >
             <div className="flex items-center justify-center py-12">
               <div className="text-center">
                 <div className="w-16 h-16 border-4 border-accent border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-                <p className="text-lg text-gray-600 dark:text-gray-300 poppins-medium">Loading articles...</p>
+                <p className="text-lg text-gray-600 poppins-medium">Loading articles...</p>
               </div>
             </div>
           </motion.div>
         ) : newsList.length === 0 && !formError ? (
           <motion.div 
-            className="bg-white dark:bg-neutral-800 rounded-3xl shadow-xl border border-gray-100 dark:border-neutral-700 p-12 text-center"
+            className="bg-white rounded-3xl shadow-xl border border-gray-100 p-12 text-center"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="w-24 h-24 bg-gray-100 dark:bg-neutral-700 rounded-full flex items-center justify-center mx-auto mb-6">
+            <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
               </svg>
             </div>
-            <h3 className="text-2xl font-bold text-gray-700 dark:text-gray-200 poppins-bold mb-2">No articles yet</h3>
-            <p className="text-gray-500 dark:text-gray-400 poppins-regular mb-6">Get started by creating your first news article</p>
+            <h3 className="text-2xl font-bold text-gray-700 poppins-bold mb-2">No articles yet</h3>
+            <p className="text-gray-500 poppins-regular mb-6">Get started by creating your first news article</p>
             <motion.button
               onClick={openAddForm}
               className="bg-gradient-to-r from-accent to-secondary hover:from-accent/90 hover:to-secondary/90 text-white font-bold py-3 px-8 rounded-2xl poppins-medium shadow-lg hover:shadow-xl transition-all duration-300"
@@ -352,7 +348,7 @@ const AdminManageNews = () => {
               {newsList.map((news, index) => (
                 <motion.div
                   key={news.id}
-                  className="bg-white dark:bg-neutral-800 p-6 rounded-2xl shadow-lg hover:shadow-xl border border-gray-100 dark:border-neutral-700 transition-all duration-300"
+                  className="bg-white  p-6 rounded-2xl shadow-lg hover:shadow-xl border border-gray-100 transition-all duration-300"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
@@ -360,18 +356,18 @@ const AdminManageNews = () => {
                 >
                   <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div className="flex-1">
-                      <h3 className="text-xl font-bold text-primary dark:text-primary-dark poppins-bold mb-2">
+                      <h3 className="text-xl font-bold text-primary poppins-bold mb-2">
                         {news.title}
                       </h3>
                       <div className="flex flex-wrap items-center gap-3 mb-3">
-                        <span className="px-3 py-1 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 text-xs rounded-full poppins-medium border border-blue-200 dark:border-blue-800">
+                        <span className="px-3 py-1 bg-blue-50 text-blue-700 text-xs rounded-full poppins-medium border border-blue-200">
                           {news.category}
                         </span>
-                        <span className="text-xs text-gray-500 dark:text-gray-400 poppins-regular">
+                        <span className="text-xs text-gray-500 poppins-regular">
                           {news.date?.toDate ? new Date(news.date.toDate()).toLocaleDateString() : 'N/A'}
                         </span>
                       </div>
-                      <p className="text-sm text-gray-600 dark:text-gray-300 line-clamp-2 poppins-regular">
+                      <p className="text-sm text-gray-600 line-clamp-2 poppins-regular">
                         {news.summary}
                       </p>
                     </div>
@@ -379,7 +375,7 @@ const AdminManageNews = () => {
                     <div className="flex gap-2 flex-shrink-0">
                       <motion.button 
                         onClick={() => handleEdit(news)} 
-                        className="flex items-center gap-2 bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/40 text-blue-600 dark:text-blue-400 border border-blue-200 dark:border-blue-800 px-4 py-2 rounded-xl poppins-medium transition-all duration-300"
+                        className="flex items-center gap-2 bg-blue-50 hover:bg-blue-100 text-blue-600 border-blue-200 px-4 py-2 rounded-xl poppins-medium transition-all duration-300"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                       >
@@ -391,7 +387,7 @@ const AdminManageNews = () => {
                       
                       <motion.button 
                         onClick={() => handleDelete(news.id, news.imagePath)} 
-                        className="flex items-center gap-2 bg-red-50 dark:bg-red-900/20 hover:bg-red-100 dark:hover:bg-red-900/40 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800 px-4 py-2 rounded-xl poppins-medium transition-all duration-300" 
+                        className="flex items-center gap-2 bg-red-50 hover:bg-red-100 text-red-600 border border-red-200 px-4 py-2 rounded-xl poppins-medium transition-all duration-300" 
                         disabled={loading}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
@@ -412,8 +408,8 @@ const AdminManageNews = () => {
         {(formError || formSuccess) && !showForm && (
           <motion.div 
             className={`mt-6 p-4 rounded-2xl text-center ${
-              formError ? 'bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 border border-red-200 dark:border-red-800' : 
-                         'bg-green-50 dark:bg-green-900/20 text-green-600 dark:text-green-400 border border-green-200 dark:border-green-800'
+              formError ? 'bg-red-50 text-red-600 border border-red-200' : 
+                         'bg-green-50 text-green-600 border border-green-200'
             }`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

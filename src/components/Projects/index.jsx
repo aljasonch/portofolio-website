@@ -49,7 +49,6 @@ const Projects = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
-      {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 right-20 w-40 h-40 bg-primary-500/5 rounded-full blur-xl animate-float"></div>
         <div className="absolute bottom-20 left-20 w-32 h-32 bg-accent-500/5 rounded-full blur-xl animate-float" style={{animationDelay: '1s'}}></div>

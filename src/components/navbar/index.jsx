@@ -58,7 +58,7 @@ const Navbar = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="nav-modern fixed top-0 w-full z-50 bg-white/80 backdrop-blur-sm transition-all duration-300"
+      className="fixed top-0 w-full z-50 bg-white/80 transition-all duration-300 shadow-md"
     >
       <div className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between lg:justify-evenly gap-12">
@@ -85,7 +85,8 @@ const Navbar = () => {
                 </motion.div>
               </Link>
             ))}
-          </nav>          <div className="lg:hidden">
+          </nav>          
+          <div className="lg:hidden">
             <button
               onClick={toggleNavbar}
               className="text-dark-700 hover:text-primary-600 focus:outline-none transition-colors duration-300 p-2 rounded-lg bg-white/80 backdrop-blur-sm border border-white/30 shadow-sm"
@@ -118,7 +119,7 @@ const Navbar = () => {
             exit="closed"
           >
             <motion.div
-              className="absolute inset-0 bg-black/50"
+              className="absolute inset-0 "
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -150,7 +151,7 @@ const Navbar = () => {
                   <Link 
                     key={item.path} 
                     to={item.path} 
-                    className="text-neutral-700 hover:text-primary-600 poppins-medium text-lg cursor-pointer py-3 px-4 w-full rounded-lg hover:bg-white/50 transition-all duration-300" 
+                    className="text-primary-500  poppins-medium text-lg cursor-pointer py-3 px-4 w-full rounded-lg hover:bg-white/50 transition-all duration-300" 
                     onClick={() => setIsOpen(false)}
                   >
                     <motion.div

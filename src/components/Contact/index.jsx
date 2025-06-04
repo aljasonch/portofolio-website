@@ -45,7 +45,7 @@ const Contact = () => {
         <div className="absolute top-1/3 left-1/3 w-32 h-32 bg-gradient-to-br from-secondary-300 to-primary-300 rounded-full blur-2xl animate-float" style={{animationDelay: '1s'}}></div>
       </div>
 
-      <div className="container mx-auto px-6 max-w-4xl text-center md:text-start relative z-10">
+      <div className="container mx-auto px-6 max-w-4xl text-justify relative z-10">
         <motion.h2
           className="text-4xl md:text-5xl font-bold gradient-text-modern mb-12"
           variants={itemVariants}

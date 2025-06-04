@@ -69,7 +69,8 @@ const Experience = () => {
       transition: { duration: 0.2, type: "spring", stiffness: 300 },
     },
   };
-  return (    <motion.section
+  return (    
+  <motion.section
       id="experience"
       className="relative pt-32 pb-20 bg-gradient-to-br from-neutral-50 via-primary-50/30 to-secondary-50/40 text-dark-800 overflow-hidden"
       variants={sectionVariants}

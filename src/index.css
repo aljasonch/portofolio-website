@@ -30,13 +30,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-  body {
-    @apply bg-gradient-to-br from-dark-900 via-dark-800 to-dark-900 text-neutral-100;
-  }
-}
-
 .poppins-thin {
   font-family: "Poppins", sans-serif;
   font-weight: 100;
@@ -324,19 +317,11 @@ html {
 
 /* Modern Glass Morphism Effects */
 .glass-card {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.75);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-}
-
-.glass-card-dark {
-  background: rgba(15, 23, 42, 0.25);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
 }
 
 /* Modern Button Styles */
@@ -480,8 +465,8 @@ html {
   }
   
   .glass-card {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
   }
 }
 

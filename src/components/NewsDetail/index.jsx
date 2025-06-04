@@ -417,7 +417,7 @@ const NewsDetail = () => {
                   {article.tags.map((tag, idx) => (
                     <span
                       key={idx}
-                      className="px-3 py-1 bg-gradient-to-r from-accent/10 to-secondary/10 text-primary border border-accent/20 rounded-full text-sm poppins-medium hover:bg-accent hover:text-white transition-colors cursor-pointer"
+                      className="px-3 py-1 bg-gradient-to-r from-accent/10 to-secondary/10 text-primary border border-accent/20 rounded-full text-sm poppins-medium hover:bg-accent transition-colors cursor-pointer hover:text-accent-600 text-primary-600"
                     >
                       #{tag}
                     </span>

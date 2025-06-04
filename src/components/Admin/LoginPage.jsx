@@ -50,15 +50,13 @@ const LoginPage = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-      >
-        {/* Login Card */}
+      >        
         <motion.div 
-          className="bg-white/95 backdrop-blur-xl dark:bg-neutral-800/95 p-8 md:p-10 rounded-3xl shadow-2xl border border-white/20"
+          className="bg-white/95 backdrop-blur-xl p-8 md:p-10 rounded-3xl shadow-2xl border border-white/20"
           initial={{ scale: 0.9 }}
           animate={{ scale: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {/* Header */}
           <div className="text-center mb-8">
             <motion.div
               initial={{ scale: 0 }}
@@ -67,9 +65,8 @@ const LoginPage = () => {
               className="w-20 h-20 bg-gradient-to-tr from-accent to-secondary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
             >
               <UserIcon className="h-10 w-10 text-white" />
-            </motion.div>
-            <motion.h2 
-              className="text-3xl font-extrabold text-neutralText dark:text-white poppins-bold"
+            </motion.div>            <motion.h2 
+              className="text-3xl font-extrabold text-neutralText poppins-bold"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.6 }}
@@ -77,7 +74,7 @@ const LoginPage = () => {
               Admin Portal
             </motion.h2>
             <motion.p 
-              className="mt-2 text-sm text-gray-600 dark:text-gray-300 poppins-regular"
+              className="mt-2 text-sm text-gray-600 poppins-regular"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
@@ -93,7 +90,7 @@ const LoginPage = () => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.8 }}
             >
-              <label htmlFor="email-address" className="block text-sm font-medium text-neutralText dark:text-gray-200 mb-2 poppins-medium">
+              <label htmlFor="email-address" className="block text-sm font-medium text-neutralText mb-2 poppins-medium">
                 Email Address
               </label>
               <div className="relative">
@@ -106,7 +103,7 @@ const LoginPage = () => {
                   type="email"
                   autoComplete="email"
                   required
-                  className="block w-full pl-10 pr-3 py-3 border border-gray-300 dark:border-gray-600 rounded-xl shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent bg-white dark:bg-neutral-700 text-neutralText dark:text-white transition-all duration-200 poppins-regular"
+                  className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent bg-white text-neutralText transition-all duration-200 poppins-regular"
                   placeholder="admin@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -120,7 +117,7 @@ const LoginPage = () => {
               animate={{ x: 0, opacity: 1 }}
               transition={{ delay: 0.9 }}
             >
-              <label htmlFor="password" className="block text-sm font-medium text-neutralText dark:text-gray-200 mb-2 poppins-medium">
+              <label htmlFor="password" className="block text-sm font-medium text-neutralText mb-2 poppins-medium">
                 Password
               </label>
               <div className="relative">
@@ -133,7 +130,7 @@ const LoginPage = () => {
                   type={showPassword ? 'text' : 'password'}
                   autoComplete="current-password"
                   required
-                  className="block w-full pl-10 pr-12 py-3 border border-gray-300 dark:border-gray-600 rounded-xl shadow-sm placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent bg-white dark:bg-neutral-700 text-neutralText dark:text-white transition-all duration-200 poppins-regular"
+                  className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-xl shadow-sm placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent bg-white text-neutralText transition-all duration-200 poppins-regular"
                   placeholder="Enter your password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -157,9 +154,9 @@ const LoginPage = () => {
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-xl p-3"
+                className="bg-red-50 border border-red-200 rounded-xl p-3"
               >
-                <p className="text-sm text-red-600 dark:text-red-400 text-center poppins-regular">
+                <p className="text-sm text-red-600 text-center poppins-regular">
                   {error}
                 </p>
               </motion.div>
@@ -196,7 +193,7 @@ const LoginPage = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.1 }}
           >
-            <p className="text-xs text-gray-500 dark:text-gray-400 poppins-regular">
+            <p className="text-xs text-gray-500 poppins-regular">
               Secure admin access • Session expires after 2 hours
             </p>
           </motion.div>
