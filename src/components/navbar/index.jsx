@@ -46,10 +46,9 @@ const Navbar = () => {
   };
   
   const navItems = [
-    { label: 'About', path: '/about' },
-    { label: 'Experience', path: '/experience' },
+    { label: 'Home', path: '/' },
     { label: 'Projects', path: '/projects' },
-    { label: 'News', path: '/news' }, 
+    { label: 'Blog', path: '/blog' },
     { label: 'Contact', path: '/contact' },
   ];
 

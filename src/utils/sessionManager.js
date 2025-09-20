@@ -1,76 +1,80 @@
-// Session Management Utility
-export const SESSION_DURATION = 2 * 60 * 60 * 1000; // 2 hours in milliseconds
+const SESSION_KEY = 'adminSession';
+const SESSION_DURATION_MS = 1000 * 60 * 120;
+const SESSION_REFRESH_THRESHOLD_MS = 1000 * 60 * 10;
 
 export const setSession = (user) => {
+  const expiresAt = Date.now() + SESSION_DURATION_MS;
   const sessionData = {
-    user: {
-      uid: user.uid,
-      email: user.email,
-    },
-    loginTime: Date.now(),
-    expiresAt: Date.now() + SESSION_DURATION,
+    uid: user.uid,
+    email: user.email,
+    expiresAt,
   };
-  
-  localStorage.setItem('adminSession', JSON.stringify(sessionData));
-  return sessionData;
+
+  localStorage.setItem(SESSION_KEY, JSON.stringify(sessionData));
 };
 
 export const getSession = () => {
+  const sessionRaw = localStorage.getItem(SESSION_KEY);
+  if (!sessionRaw) return null;
+
   try {
-    const sessionData = localStorage.getItem('adminSession');
-    if (!sessionData) return null;
-    
-    const session = JSON.parse(sessionData);
-    
-    // Check if session has expired
-    if (Date.now() > session.expiresAt) {
-      removeSession();
-      return null;
-    }
-    
+    const session = JSON.parse(sessionRaw);
     return session;
   } catch (error) {
-    console.error('Error getting session:', error);
-    removeSession();
     return null;
   }
 };
 
-export const removeSession = () => {
-  localStorage.removeItem('adminSession');
-};
-
-export const refreshSession = () => {
-  const session = getSession();
-  if (session) {
-    session.expiresAt = Date.now() + SESSION_DURATION;
-    localStorage.setItem('adminSession', JSON.stringify(session));
-    return session;
-  }
-  return null;
-};
-
 export const isSessionValid = () => {
   const session = getSession();
-  return session !== null;
+  if (!session) return false;
+
+  return session.expiresAt > Date.now();
+};
+
+export const removeSession = () => {
+  localStorage.removeItem(SESSION_KEY);
 };
 
 export const getTimeUntilExpiry = () => {
   const session = getSession();
   if (!session) return 0;
-  
-  const timeLeft = session.expiresAt - Date.now();
-  return Math.max(0, timeLeft);
+  return Math.max(session.expiresAt - Date.now(), 0);
 };
 
-export const formatTimeRemaining = (timeMs) => {
-  if (timeMs <= 0) return 'Expired';
-  
-  const hours = Math.floor(timeMs / (1000 * 60 * 60));
-  const minutes = Math.floor((timeMs % (1000 * 60 * 60)) / (1000 * 60));
-  
-  if (hours > 0) {
-    return `${hours}h ${minutes}m`;
+export const formatTimeRemaining = (milliseconds) => {
+  const totalMinutes = Math.floor(milliseconds / 60000);
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+
+  if (hours <= 0) {
+    return `${minutes}m`;
   }
-  return `${minutes}m`;
+
+  return `${hours}h ${minutes}m`;
+};
+
+export const refreshSession = () => {
+  const session = getSession();
+  if (!session) return;
+
+  const refreshed = {
+    ...session,
+    expiresAt: Date.now() + SESSION_DURATION_MS,
+  };
+
+  localStorage.setItem(SESSION_KEY, JSON.stringify(refreshed));
+};
+
+export const refreshSessionIfNeeded = (threshold = SESSION_REFRESH_THRESHOLD_MS) => {
+  const session = getSession();
+  if (!session) return false;
+
+  const timeLeft = session.expiresAt - Date.now();
+  if (timeLeft > threshold) {
+    return false;
+  }
+
+  refreshSession();
+  return true;
 };
