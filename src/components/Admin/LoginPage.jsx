@@ -14,44 +14,44 @@ const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  // Check if user is already logged in
   useEffect(() => {
     if (isSessionValid()) {
-      navigate('/admin/manage-news', { replace: true });
+      navigate('/admin/manage-blog', { replace: true });
     }
   }, [navigate]);
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
+
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      // Set session with expiration
       setSession(userCredential.user);
-      navigate('/admin/manage-news'); // Redirect to admin dashboard after successful login
+      navigate('/admin/manage-blog');
     } catch (err) {
       setError('Failed to login. Please check your email and password.');
-      console.error("Login error:", err);
+      console.error('Login error:', err);
     } finally {
       setLoading(false);
     }
   };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-primary via-secondary to-accent flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-      {/* Background decorative elements */}
+    <div className="min-h-screen bg-gradient-to-br from-primary-500 via-secondary-500 to-accent-400 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-white/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-primary-200/40 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary-200/40 rounded-full blur-3xl animate-pulse delay-1000" />
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent-200/30 rounded-full blur-3xl" />
       </div>
 
-      <motion.div 
-        className="relative z-10 max-w-md w-full"
+      <motion.div
+        className="relative z-10 max-w-md w-full mt-24"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-      >        
-        <motion.div 
+      >
+        <motion.div
           className="bg-white/95 backdrop-blur-xl p-8 md:p-10 rounded-3xl shadow-2xl border border-white/20"
           initial={{ scale: 0.9 }}
           animate={{ scale: 1 }}
@@ -62,10 +62,11 @@ const LoginPage = () => {
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="w-20 h-20 bg-gradient-to-tr from-accent to-secondary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg"
+              className="w-20 h-20 bg-gradient-to-tr from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg shadow-primary-500/30"
             >
               <UserIcon className="h-10 w-10 text-white" />
-            </motion.div>            <motion.h2 
+            </motion.div>
+            <motion.h2
               className="text-3xl font-extrabold text-neutralText poppins-bold"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -73,18 +74,17 @@ const LoginPage = () => {
             >
               Admin Portal
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="mt-2 text-sm text-gray-600 poppins-regular"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
             >
-              Sign in to manage your content
+              Sign in to manage blog content
             </motion.p>
           </div>
 
           <form className="space-y-6" onSubmit={handleLogin}>
-            {/* Email Field */}
             <motion.div
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -111,7 +111,6 @@ const LoginPage = () => {
               </div>
             </motion.div>
 
-            {/* Password Field */}
             <motion.div
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
@@ -149,7 +148,6 @@ const LoginPage = () => {
               </div>
             </motion.div>
 
-            {/* Error Message */}
             {error && (
               <motion.div
                 initial={{ opacity: 0, y: -10 }}
@@ -162,19 +160,18 @@ const LoginPage = () => {
               </motion.div>
             )}
 
-            {/* Submit Button */}
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 1.0 }}
             >
-              <motion.button
-                type="submit"
-                disabled={loading}
-                className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-xl text-white bg-gradient-to-r from-accent to-secondary hover:from-accent/90 hover:to-secondary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent disabled:opacity-50 disabled:cursor-not-allowed shadow-lg transition-all duration-200 poppins-medium"
-                whileHover={{ scale: loading ? 1 : 1.02 }}
-                whileTap={{ scale: loading ? 1 : 0.98 }}
-              >
+            <motion.button
+              type="submit"
+              disabled={loading}
+              className="group relative w-full flex justify-center py-3 px-4 border border-transparent text-sm font-medium rounded-xl text-white bg-gradient-to-r from-primary-500 to-secondary-500 hover:from-primary-500/90 hover:to-secondary-500/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-400 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-primary-500/30 transition-all duration-200 poppins-medium"
+              whileHover={{ scale: loading ? 1 : 1.02 }}
+              whileTap={{ scale: loading ? 1 : 0.98 }}
+            >
                 {loading && (
                   <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
@@ -186,7 +183,6 @@ const LoginPage = () => {
             </motion.div>
           </form>
 
-          {/* Footer */}
           <motion.div
             className="mt-8 text-center"
             initial={{ opacity: 0 }}

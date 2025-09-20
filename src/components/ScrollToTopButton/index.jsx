@@ -32,7 +32,7 @@ const ScrollToTopButton = () => {
       {isVisible && (
         <motion.button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 bg-accent hover:bg-primary text-white p-3 rounded-full shadow-lg focus:outline-none transition-colors duration-300 z-50"
+          className="fixed bottom-8 text-[--primary-500] right-8 bg-accent hover:bg-primary p-3 rounded-full shadow-lg focus:outline-none transition-colors duration-300 z-50"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 20 }}

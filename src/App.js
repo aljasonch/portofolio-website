@@ -1,18 +1,17 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import About from './components/About';
+import Home from './components/Home';
 import Projects from './components/Projects';
+import Blog from './components/Blog';
+import BlogDetail from './components/BlogDetail';
+import LoginPage from './components/Admin/LoginPage';
+import ProtectedRoute from './components/Admin/ProtectedRoute';
+import AdminManageBlog from './components/Admin/AdminManageBlog';
 import Contact from './components/Contact';
-import Experience from './components/Experience';
 import Navbar from './components/navbar';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import ScrollToTop from './components/ScrollToTop';
-import News from './components/News';
-import NewsDetail from './components/NewsDetail';
 import NotFound from './components/NotFound';
-import LoginPage from './components/Admin/LoginPage';
-import ProtectedRoute from './components/Admin/ProtectedRoute';
-import AdminManageNews from './components/Admin/AdminManageNews';
 
 function App() {
   return (
@@ -21,18 +20,15 @@ function App() {
         <ScrollToTop />
         <Navbar />
         <Routes>
-          <Route path="/" element={<About />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/experience" element={<Experience />} />
+          <Route path="/" element={<Home />} />
           <Route path="/projects" element={<Projects />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/news/:id" element={<NewsDetail />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
           <Route path="/admin/login" element={<LoginPage />} />
           <Route element={<ProtectedRoute />}>
-            <Route path="/admin/manage-news" element={<AdminManageNews />} />
+            <Route path="/admin/manage-blog" element={<AdminManageBlog />} />
           </Route>
-
+          <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <ScrollToTopButton />
