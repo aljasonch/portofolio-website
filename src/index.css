@@ -317,18 +317,3 @@ html {
     -webkit-backdrop-filter: blur(15px);
   }
 }
-
-/* Print Styles */
-@media print {
-  .glass-card,
-  .card-modern {
-    background: white;
-    border: 1px solid #e5e7eb;
-    box-shadow: none;
-  }
-  
-  .gradient-text-modern {
-    -webkit-text-fill-color: #0ea5e9;
-    background: none;
-  }
-}

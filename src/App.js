@@ -12,6 +12,7 @@ import Navbar from './components/navbar';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import ScrollToTop from './components/ScrollToTop';
 import NotFound from './components/NotFound';
+import Footer from './components/footer';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <Footer />
         <ScrollToTopButton />
       </div>
     </Router>

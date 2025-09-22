@@ -89,7 +89,7 @@ const Blog = () => {
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         <motion.div className="text-center mb-16" variants={sectionVariants}>
           <motion.span
-            className="uppercase tracking-[0.4em] text-sm text-primary-500 poppins-medium"
+            className="uppercase tracking-[0.4em] text-sm text-green-500 poppins-medium"
             initial={{ opacity: 0, y: -12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
@@ -97,7 +97,7 @@ const Blog = () => {
             Journal
           </motion.span>
           <motion.h1
-            className="text-4xl md:text-5xl poppins-bold gradient-text-modern mt-4 mb-6"
+            className="text-4xl md:text-5xl poppins-bold text-green-600 mt-4 mb-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
@@ -112,7 +112,7 @@ const Blog = () => {
           >
             Thoughts on building human-centered digital products, teaming with clients, and pushing ideas from sketch to launch.
           </motion.p>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 mx-auto mt-8 rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-green-600 mx-auto mt-8 rounded-full"></div>
         </motion.div>
 
         <div className="glass-card border border-white/40 rounded-3xl p-6 mb-12 backdrop-blur-xl shadow-xl">
@@ -123,7 +123,7 @@ const Blog = () => {
                 placeholder="Search articles..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-4 pr-4 py-3 rounded-2xl border border-white/50 bg-white/60 focus:ring-2 focus:ring-primary-400 focus:outline-none"
+                className="w-full pl-4 pr-4 py-3 rounded-2xl border border-white/50 bg-white/60 focus:ring-2 focus:ring-green-400 focus:outline-none"
               />
             </div>
             <div className="flex flex-wrap gap-2 items-center">
@@ -133,7 +133,7 @@ const Blog = () => {
                   onClick={() => setSelectedTag(tag)}
                   className={`px-4 py-2 rounded-full text-sm font-semibold transition-all ${
                     selectedTag === tag
-                      ? 'bg-gradient-to-r from-primary-500 to-secondary-500 text-white shadow-lg'
+                      ? 'bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg'
                       : 'bg-white/70 text-neutral-600 hover:bg-white'
                   }`}
                 >
@@ -203,7 +203,7 @@ const Blog = () => {
                     {article.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="px-3 py-1 text-xs uppercase tracking-wide bg-primary-500/10 text-primary-600 rounded-full poppins-medium"
+                        className="px-3 py-1 text-xs uppercase tracking-wide bg-green-500/10 text-green-600 rounded-full poppins-medium"
                       >
                         {tag}
                       </span>
@@ -214,7 +214,7 @@ const Blog = () => {
                 <motion.div className="mt-8" whileHover={{ x: 4 }}>
                   <Link
                     to={`/blog/${article.slug}`}
-                    className="inline-flex items-center gap-2 text-primary-600 poppins-semibold hover:text-accent-500 transition-colors"
+                    className="inline-flex items-center gap-2 text-green-600 poppins-semibold hover:text-green-500 transition-colors"
                   >
                     Read Story
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

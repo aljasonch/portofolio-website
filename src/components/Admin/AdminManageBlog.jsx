@@ -208,7 +208,7 @@ const AdminManageBlog = () => {
         >
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
             <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-primary poppins-bold mb-2">
+              <h1 className="text-3xl md:text-4xl font-bold text-green-600 poppins-bold mb-2">
                 Blog Management
               </h1>
               <p className="text-lg text-gray-600 poppins-regular mb-4">
@@ -301,7 +301,7 @@ const AdminManageBlog = () => {
                   <div className="flex items-center gap-3">
                     <button
                       onClick={() => handleEdit(post)}
-                      className="px-4 py-2 rounded-xl border border-primary-200 text-primary-600 hover:bg-primary-50 transition-all"
+                      className="px-4 py-2 rounded-xl border border-green-200 text-green-600 hover:bg-green-50 transition-all"
                     >
                       Edit
                     </button>

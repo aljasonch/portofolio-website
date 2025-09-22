@@ -63,7 +63,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between lg:justify-evenly gap-12">
           <Link to="/" className="cursor-pointer">
             <motion.div
-              className="text-2xl font-bold gradient-text-modern poppins-extrabold"
+              className="text-2xl font-bold text-green-500 poppins-extrabold"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -74,13 +74,13 @@ const Navbar = () => {
             {navItems.map((item) => (
               <Link key={item.path} to={item.path} className="cursor-pointer group">
                 <motion.div
-                  className="relative text-dark-700 hover:text-primary-600 font-semibold transition-all duration-300 py-2 px-4 rounded-lg"
+                  className="relative text-dark-700 hover:text-green-600 font-semibold transition-all duration-300 py-2 px-4 rounded-lg"
                   variants={desktopNavItemVariants}
                   whileHover="hover"
                   whileTap="tap"
                 >
                   {item.label}
-                  <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 group-hover:w-full group-hover:left-0 transition-all duration-300 rounded-full"></div>
+                  <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-green-500 to-green-600 group-hover:w-full group-hover:left-0 transition-all duration-300 rounded-full"></div>
                 </motion.div>
               </Link>
             ))}
@@ -88,7 +88,7 @@ const Navbar = () => {
           <div className="lg:hidden">
             <button
               onClick={toggleNavbar}
-              className="text-dark-700 hover:text-primary-600 focus:outline-none transition-colors duration-300 p-2 rounded-lg bg-white/80 backdrop-blur-sm border border-white/30 shadow-sm"
+              className="text-dark-700 hover:text-green-600 focus:outline-none transition-colors duration-300 p-2 rounded-lg bg-white/80 backdrop-blur-sm border border-white/30 shadow-sm"
               aria-label="Open menu"
             >
               <svg
@@ -150,7 +150,7 @@ const Navbar = () => {
                   <Link 
                     key={item.path} 
                     to={item.path} 
-                    className="text-primary-500  poppins-medium text-lg cursor-pointer py-3 px-4 w-full rounded-lg hover:bg-white/50 transition-all duration-300" 
+                    className="text-green-500  poppins-medium text-lg cursor-pointer py-3 px-4 w-full rounded-lg hover:bg-white/50 transition-all duration-300" 
                     onClick={() => setIsOpen(false)}
                   >
                     <motion.div

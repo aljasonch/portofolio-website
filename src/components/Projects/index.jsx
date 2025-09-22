@@ -57,7 +57,7 @@ const Projects = () => {
       <div className="container mx-auto px-6 max-w-6xl relative z-10">
         <motion.div className="text-center mb-16">
           <motion.h2
-            className="text-4xl md:text-5xl poppins-bold gradient-text-modern mb-4"
+            className="text-4xl md:text-5xl poppins-bold text-green-600 mb-4"
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -74,7 +74,7 @@ const Projects = () => {
           >
             A showcase of innovative solutions and creative implementations
           </motion.p>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-accent-500 mx-auto mt-6 rounded-full"></div>
+          <div className="w-24 h-1 bg-gradient-to-r from-green-500 to-green-600 mx-auto mt-6 rounded-full"></div>
         </motion.div>        <motion.div
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           variants={sectionVariants}
@@ -97,7 +97,7 @@ const Projects = () => {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-2 group-hover:translate-x-0">
                     <div className="w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center shadow-lg">
-                      <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                       </svg>
                     </div>
@@ -105,15 +105,15 @@ const Projects = () => {
                 </div>
                 <div className="p-6">
                   <div className="mb-3">
-                    <span className="text-secondary-600 poppins-medium text-sm tracking-wide">
+                    <span className="text-green-600 poppins-medium text-sm tracking-wide">
                       Click to visit
                     </span>
                   </div>
                   <div className="flex justify-between items-start">
-                    <h3 className="text-xl poppins-bold text-neutral-800 group-hover:text-primary-600 transition-colors duration-300 leading-tight">
+                    <h3 className="text-xl poppins-bold text-neutral-800 group-hover:text-green-600 transition-colors duration-300 leading-tight">
                       {project.title}
                     </h3>
-                    <div className="text-primary-500 text-xl transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent-500 ml-2 mt-1">
+                    <div className="text-green-600 text-xl transition-all duration-300 group-hover:translate-x-1 group-hover:text-green-500 ml-2 mt-1">
                       →
                     </div>
                   </div>

@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion }from 'framer-motion';
 import { TypeAnimation } from 'react-type-animation';
 import { useNavigate } from 'react-router-dom';
 
@@ -49,14 +49,19 @@ const experiences = [
   },
 ];
 
+const work = [
+  {
+    title: 'Junior Software Engineer Intern',
+    date: 'Jan 2025 - Present',
+    organization: 'Kompas Gramedia',
+    description:
+      "",
+  },
+];
+
 const Home = () => {
   const navigate = useNavigate();
   const aboutSectionRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: aboutSectionRef,
-    offset: ['start end', 'end start'],
-  });
-  const imageParallaxY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
 
   const sectionVariants = {
     hidden: { opacity: 0 },
@@ -71,10 +76,6 @@ const Home = () => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: 0.2 } },
-  };
 
   const skillIconVariants = {
     hidden: { opacity: 0, scale: 0.5 },
@@ -104,7 +105,7 @@ const Home = () => {
         >
           <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-12">
             <motion.div className="md:w-1/2 mb-8 md:mb-0" variants={itemVariants}>
-              <motion.p className="text-secondary-600 poppins-medium text-lg mb-2 tracking-wide" variants={itemVariants}>
+              <motion.p className="text-green-500 poppins-medium text-xl mb-2 tracking-wide" variants={itemVariants}>
                 Hey, I'm Jason
               </motion.p>
               <motion.h2 className="text-3xl md:text-5xl mr-10 poppins-bold xl:mb-8 h-24 md:h-36 lg:h-24" variants={itemVariants}>
@@ -114,7 +115,7 @@ const Home = () => {
                   cursor
                   repeat={Infinity}
                   style={{ display: 'inline-block', lineHeight: '1.2' }}
-                  className="gradient-text-modern text-modern"
+                  className="text-green-600"
                 />
               </motion.h2>
               <motion.p
@@ -128,14 +129,14 @@ const Home = () => {
               <motion.div className="flex flex-col sm:flex-row gap-4" variants={itemVariants}>
                 <motion.button
                   onClick={() => navigate('/contact')}
-                  className="btn-modern bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 poppins-medium"
+                  className="btn-modern bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 poppins-medium"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
                   Get In Touch
                 </motion.button>
                 <motion.button
-                  className="glass-card border border-primary-200 hover:border-primary-300 text-primary-600 hover:text-primary-700 font-semibold py-4 px-8 rounded-full transition-all duration-300 poppins-medium interactive-hover"
+                  className="glass-card border border-green-200 hover:border-green-300 text-green-600 hover:text-green-700 font-semibold py-4 px-8 rounded-full transition-all duration-300 poppins-medium interactive-hover"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -153,15 +154,15 @@ const Home = () => {
               </motion.div>
             </motion.div>
 
-            <motion.div className="relative group" variants={imageVariants} style={{ y: imageParallaxY }}>
+            <motion.div className="relative group">
               <div className="w-[280px] h-[280px] md:w-[320px] md:h-[320px] relative overflow-hidden rounded-full shadow-large">
                 <div className="absolute inset-0 bg-gradient-to-tr from-primary-500/20 via-transparent to-accent-500/20 rounded-full"></div>
                 <img
                   src={Profile}
                   alt="Profile"
-                  className="w-full h-full object-cover transition-all duration-300 group-hover:scale-110"
+                  className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 rounded-full border-4 border-white/20 group-hover:border-white/40 transition-all duration-300"></div>
+                <div className="absolute inset-0 rounded-full border-4 border-white/20"></div>
               </div>
               <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary-500 rounded-full animate-bounce-gentle opacity-80"></div>
               <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-accent-500 rounded-full animate-bounce-gentle opacity-80" style={{ animationDelay: '0.5s' }}></div>
@@ -183,7 +184,7 @@ const Home = () => {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <motion.h2 className="text-4xl md:text-5xl text-center font-bold gradient-text-modern mb-16" variants={itemVariants}>
+          <motion.h2 className="text-4xl md:text-5xl text-center font-bold text-green-600 mb-16" variants={itemVariants}>
             EXPERIENCE WITH
           </motion.h2>
 
@@ -194,7 +195,7 @@ const Home = () => {
             {skills.map((skill) => (
               <motion.div
                 key={skill.alt}
-                className="glass-card p-4 rounded-2xl hover:shadow-xl transition-all duration-300"
+                className="p-4 rounded-2xl hover:shadow-xl transition-all duration-300"
                 variants={skillIconVariants}
                 whileHover="hover"
               >
@@ -212,30 +213,104 @@ const Home = () => {
             variants={itemVariants}
           ></motion.div>
 
-          <motion.h2 className="text-4xl md:text-5xl text-center font-bold gradient-text-modern mb-16" variants={itemVariants}>
+          <motion.h2 className="text-4xl md:text-5xl text-center font-bold text-green-600 mb-16" variants={itemVariants}>
+            WORK EXPERIENCE
+          </motion.h2>
+
+          <motion.div
+            className="relative max-w-5xl mx-auto pl-12 md:pl-16"
+            variants={sectionVariants}
+          >
+            <div className="space-y-10 md:space-y-14">
+              {work.map((exp, index) => (
+                <motion.article
+                  key={exp.title}
+                  className="relative pl-12 md:pl-16"
+                  variants={itemVariants}
+                  whileHover={{ x: 6 }}
+                >
+                  <div className="absolute left-0 top-6 md:top-7 w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-green-600 text-white shadow-glow flex items-center justify-center">
+                    <span className="text-base font-semibold">{String(index + 1).padStart(2, '0')}</span>
+                  </div>
+                  <div className="rounded-3xl border border-gray hover:border-gray-300/50 p-6 md:p-8  shadow-lg">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                      <div>
+                        <p className="text-xs tracking-[0.35em] uppercase text-green-500 poppins-medium mb-2">
+                          Role
+                        </p>
+                        <h3 className="text-2xl md:text-3xl poppins-bold text-neutral-800">
+                          {exp.title}
+                        </h3>
+                      </div>
+                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-green-500 to-green-600 text-white text-sm poppins-semibold shadow-soft">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        {exp.date}
+                      </div>
+                    </div>
+                    <div className="mt-5">
+                      <p className="text-sm uppercase tracking-[0.2em] text-neutral-400 poppins-medium">
+                        {exp.organization}
+                      </p>
+                      <p className="mt-3 text-neutral-600 leading-relaxed text-justify">
+                        {exp.description}
+                      </p>
+                    </div>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </motion.div>
+
+          <motion.h2 className="text-4xl md:text-5xl text-center font-bold text-green-600 mt-24 mb-16" variants={itemVariants}>
             ORGANIZATION EXPERIENCE
           </motion.h2>
 
-          <motion.div className="flex flex-col space-y-8" variants={sectionVariants}>
-            {experiences.map((exp) => (
-              <motion.div
-                key={exp.title}
-                className="glass-card p-8 rounded-2xl border border-white/20 hover:border-primary-300/50 transition-all duration-500 group hover:shadow-xl"
-                variants={itemVariants}
-                whileHover={{ scale: 1.02, y: -5 }}
-              >
-                <div className="flex flex-col md:flex-row md:justify-between mb-4">
-                  <h3 className="text-2xl font-bold text-primary-700 group-hover:text-primary-600 transition-colors duration-300">
-                    {exp.title}
-                  </h3>
-                  <div className="px-4 py-2 bg-gradient-to-r from-secondary-100 to-accent-100 text-secondary-700 rounded-full text-sm font-semibold mt-2 md:mt-0 w-fit">
-                    {exp.date}
+          <motion.div
+            className="relative max-w-5xl mb-24 mx-auto pl-12 md:pl-16"
+            variants={sectionVariants}
+          >
+            <div className="space-y-10 md:space-y-14">
+              {experiences.map((exp, index) => (
+                <motion.article
+                  key={exp.title}
+                  className="relative pl-12 md:pl-16"
+                  variants={itemVariants}
+                  whileHover={{ x: 6 }}
+                >
+                  <div className="absolute left-0 top-6 md:top-7 w-12 h-12 rounded-full bg-gradient-to-br from-green-500 to-green-600 text-white shadow-glow flex items-center justify-center">
+                    <span className="text-base font-semibold">{String(index + 1).padStart(2, '0')}</span>
                   </div>
-                </div>
-                <p className="font-semibold text-accent-600 mb-4 text-lg">{exp.organization}</p>
-                <p className="text-dark-600 text-justify leading-relaxed">{exp.description}</p>
-              </motion.div>
-            ))}
+                  <div className="rounded-3xl border border-gray hover:border-gray-300/50 p-6 md:p-8  shadow-lg">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                      <div>
+                        <p className="text-xs tracking-[0.35em] uppercase text-green-500 poppins-medium mb-2">
+                          Role
+                        </p>
+                        <h3 className="text-2xl md:text-3xl poppins-bold text-neutral-800">
+                          {exp.title}
+                        </h3>
+                      </div>
+                      <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-green-500 to-green-600 text-white text-sm poppins-semibold shadow-soft">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        {exp.date}
+                      </div>
+                    </div>
+                    <div className="mt-5">
+                      <p className="text-sm uppercase tracking-[0.2em] text-neutral-400 poppins-medium">
+                        {exp.organization}
+                      </p>
+                      <p className="mt-3 text-neutral-600 leading-relaxed text-justify">
+                        {exp.description}
+                      </p>
+                    </div>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
           </motion.div>
         </motion.div>
     </motion.section>
