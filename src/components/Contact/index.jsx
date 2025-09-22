@@ -38,7 +38,6 @@ const Contact = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
     >
-      {/* Decorative background elements */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-16 right-20 w-40 h-40 bg-gradient-to-br from-accent-300 to-secondary-300 rounded-full blur-3xl animate-float"></div>
         <div className="absolute bottom-20 left-16 w-56 h-56 bg-gradient-to-br from-primary-300 to-accent-300 rounded-full blur-3xl animate-float" style={{animationDelay: '3s'}}></div>
@@ -47,7 +46,7 @@ const Contact = () => {
 
       <div className="container mx-auto px-6 max-w-4xl text-justify relative z-10">
         <motion.h2
-          className="text-4xl md:text-5xl font-bold gradient-text-modern mb-12"
+          className="text-4xl md:text-5xl font-bold text-green-600 mb-12"
           variants={itemVariants}
         >
           LET'S CONNECT
@@ -69,14 +68,14 @@ const Contact = () => {
         </motion.div>
 
         <motion.a
-          href="mailto:alfonsusjason01@gmail.com"
-          className="btn-modern bg-gradient-to-r p-2 rounded-xl from-accent-500 to-secondary-500 hover:from-accent-400 hover:to-secondary-400 text-white font-semibold text-lg flex items-center justify-center md:justify-start mb-12 transition-all duration-300 group w-fit mx-auto md:mx-0"
+          href="mailto:alfonsusjasonchristian@gmail.com"
+          className="btn-modern bg-gradient-to-r p-2 rounded-xl from-green-500 to-green-600 hover:from-green-400 hover:to-green-500 text-white font-semibold text-lg flex items-center justify-center md:justify-start mb-12 transition-all duration-300 group w-fit mx-auto md:mx-0"
           variants={itemVariants}
           whileHover={{ scale: 1.05, y: -2 }}
           whileTap={{ scale: 0.95 }}
         >
           <FaEnvelope className="mr-3 text-xl group-hover:rotate-12 transition-transform duration-300" />
-          alfonsusjason01@gmail.com
+          alfonsusjasonchristian@gmail.com
         </motion.a>
 
         <motion.div
@@ -90,7 +89,7 @@ const Contact = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label={link.label}
-              className="glass-card p-4 rounded-2xl text-accent-600 hover:text-accent-500 transition-all duration-300 group hover:shadow-xl border border-white/30"
+              className="glass-card p-4 rounded-2xl text-green-600 hover:text-green-500 transition-all duration-300 group hover:shadow-xl border border-white/30"
               variants={iconVariants}
               whileHover="hover"
               whileTap="tap"

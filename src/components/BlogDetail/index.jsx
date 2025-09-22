@@ -87,7 +87,7 @@ const BlogDetail = () => {
     return (
       <div className="pt-32 pb-20 min-h-screen section-gradient flex items-center justify-center">
         <div className="text-center px-6">
-          <h1 className="text-4xl poppins-bold gradient-text-modern mb-4">{error || 'Article not found'}</h1>
+          <h1 className="text-4xl poppins-bold text-green-600 mb-4">{error || 'Article not found'}</h1>
           <p className="text-neutral-600 poppins-regular mb-8">
             The blog post you are looking for doesn’t exist or may have been moved.
           </p>
@@ -117,7 +117,7 @@ const BlogDetail = () => {
       <div className="container mx-auto px-6 max-w-4xl relative z-10">
         <Link
           to="/blog"
-          className="inline-flex items-center gap-2 text-primary-600 poppins-medium hover:text-accent-500 transition-colors"
+          className="inline-flex items-center gap-2 text-green-600 poppins-medium hover:text-green-500 transition-colors"
         >
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -129,14 +129,14 @@ const BlogDetail = () => {
           <span className="text-sm text-neutral-500 poppins-medium">
             {post.date ? post.date.toLocaleDateString() : 'Unscheduled'} • {post.readTime || '—'}
           </span>
-          <h1 className="mt-4 text-4xl md:text-5xl poppins-bold gradient-text-modern">
+          <h1 className="mt-4 text-4xl md:text-5xl poppins-bold text-green-600">
             {post.title}
           </h1>
           <div className="mt-6 flex flex-wrap gap-2">
             {post.tags?.map((tag) => (
               <span
                 key={tag}
-                className="px-3 py-1 text-xs uppercase tracking-wide bg-primary-500/10 text-primary-600 rounded-full poppins-medium"
+                className="px-3 py-1 text-xs uppercase tracking-wide bg-green-500/10 text-green-600 rounded-full poppins-medium"
               >
                 {tag}
               </span>
@@ -180,7 +180,7 @@ const BlogDetail = () => {
                   <p className="mt-3 text-neutral-600 text-sm leading-relaxed">
                     {article.excerpt}
                   </p>
-                  <span className="mt-4 inline-flex items-center gap-2 text-primary-600 text-sm poppins-semibold">
+                  <span className="mt-4 inline-flex items-center gap-2 text-green-600 text-sm poppins-semibold">
                     Read story
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
